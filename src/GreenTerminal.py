@@ -5,7 +5,7 @@
 from time import time
 from datetime import datetime
 
-print(f'GreenTerminal   -   [run time] {(datetime.now()).strftime('%a %b %d %H:%M:%S %Y')}\n(c) all rights reserved under the MIT license (MichiTheCat-RedStar on GitGub)')
+print(f'GreenTerminal   -   [run time] {(datetime.now()).strftime("%a %b %d %H:%M:%S %Y")}\n(c) all rights reserved under the MIT license (MichiTheCat-RedStar on GitGub)')
 while True:
     user = input('\nGreenTerminal> ') # Ввод пользователя
 

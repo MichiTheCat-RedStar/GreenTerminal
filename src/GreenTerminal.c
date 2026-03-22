@@ -17,11 +17,17 @@ int main() {
         printf("\nGreenTerminal> ");
         fgets(user, sizeof(user), stdin);
         size_t len = strlen(user);
-        if (len > 0 && user[len-1] == '\n') user[len-1] = '\0';
+        if (len > 0 && user[len-1] == '\n') {
+            user[len-1] = '\0';
+        } else {
+            int c;
+            while ((c = getchar()) != '\n' && c != EOF);
+        }
 
         // printf("\n%s", user); // Что пишет user | Удалить после отладки
 
         if (strcmp(user, "") == 0) { // NULL
+            continue;
 
         } else if (strcmp(user, "time") == 0) { // time
             t = time(NULL);
