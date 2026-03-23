@@ -10,38 +10,41 @@
 int main() {
     
     time_t t = time(NULL); // Время сейчас
-    char user[32]; // Какой всего длины может быть строка
+    char User[32]; // Какой всего длины может быть строка
     printf("GreenTerminal   -   [run time] %s(c) all rights reserved under the MIT license (MichiTheCat-RedStar on GitGub)\n", ctime(&t));
 
     while (1) {
         printf("\nGreenTerminal> ");
-        fgets(user, sizeof(user), stdin);
-        size_t len = strlen(user);
-        if (len > 0 && user[len-1] == '\n') {
-            user[len-1] = '\0';
+        fgets(User, sizeof(User), stdin);
+        size_t len = strlen(User);
+        if (len > 0 && User[len-1] == '\n') {
+            User[len-1] = '\0';
         } else {
             int c;
             while ((c = getchar()) != '\n' && c != EOF);
         }
 
-        // printf("\n%s", user); // Что пишет user | Удалить после отладки
+        // printf("\n%s", User); // Что пишет User | Удалить после отладки
 
-        if (strcmp(user, "") == 0) { // NULL
+        if (strcmp(User, "") == 0) { // NULL
             continue;
 
-        } else if (strcmp(user, "time") == 0) { // time
+        } else if (strcmp(User, "data") == 0) { // data
             t = time(NULL);
             printf("%s", ctime(&t));
 
-        } else if (strcmp(user, "time --local") == 0) { // time --local
+        } else if (strcmp(User, "time") == 0) { // time
             t = time(NULL);
             printf("%ld\n", (long)t);
             
-        } else if (strcmp(user, "exit") == 0) { // exit
+        } else if (strcmp(User, "exit") == 0) { // exit
             exit(0);
 
+        } else if (strcmp(User, "help") == 0) { // help
+            printf("help | ? - displays all commands\nexit - terminates execution\ndata - displays the date\ntime - displays the time in seconds\n");
+
         } else {
-            printf("\"%s\" is no such command, read the documentation in README.md\n", user);
+            printf("\"%s\" is no such command, read the documentation in README.md\n", User);
         }
         
     }

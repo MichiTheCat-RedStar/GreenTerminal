@@ -7,19 +7,22 @@ from datetime import datetime
 
 print(f'GreenTerminal   -   [run time] {(datetime.now()).strftime("%a %b %d %H:%M:%S %Y")}\n(c) all rights reserved under the MIT license (MichiTheCat-RedStar on GitGub)')
 while True:
-    user = input('\nGreenTerminal> ') # Ввод пользователя
+    User = input('\nGreenTerminal> ') # Ввод пользователя
 
-    if not user: # None
+    if not User: # None
         continue
 
-    elif user == 'time': # time
+    elif User == 'data': # data
         print((datetime.now()).strftime('%a %b %d %H:%M:%S %Y'))
 
-    elif user == 'time --local': # time --local
+    elif User == 'time': # time
         print(int(time()))
 
-    elif user == 'exit': # exit
+    elif User == 'exit': # exit
         quit()
     
+    elif User == 'help': # help
+        print('help | ? - displays all commands\nexit - terminates execution\ndata - displays the date\ntime - displays the time in seconds')
+
     else:
-        print(f'"{user}" is no such command, read the documentation in README.md\n')
+        print(f'"{User}" is no such command, read the documentation in README.md\n')
