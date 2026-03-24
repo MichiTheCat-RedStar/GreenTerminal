@@ -6,31 +6,35 @@
 #include <time.h>
 #include <string.h>
 #include <stdlib.h>
+#include <locale.h>
 
 int main() {
     
     time_t t = time(NULL); // Время сейчас
+    setlocale(LC_ALL, "");
+    size_t len = 0;
+    int c;
+
     char User[32]; // Какой всего длины может быть строка
-    char VERSION[6] = "v0.2a"; // Версия
+    char VERSION[6] = "v0.2b"; // Версия
 
     printf("GreenTerminal   -   [run time] %s(c) all rights reserved under the MIT license (MichiTheCat-RedStar on GitGub)\n", ctime(&t));
     while (1) {
         printf("\nGreenTerminal> ");
         fgets(User, sizeof(User), stdin);
-        size_t len = strlen(User);
+        len = strlen(User);
         if (len > 0 && User[len-1] == '\n') {
             User[len-1] = '\0';
         } else {
-            int c;
             while ((c = getchar()) != '\n' && c != EOF);
         }
 
         // printf("\n%s", User); // Что пишет User | Удалить после отладки
+            // Думаю можно это удалить, так как уже не используется, так же стараюсь следить, чтобы небыло такого, что переменная вечно задаётся новая, так как в отличие от python переменные не перезаписываются, как я понял...
+        //if (strcmp(User, "") == 0) { // NULL  <-
+        //    continue;
 
-        if (strcmp(User, "") == 0) { // NULL
-            continue;
-
-        } else if (strcmp(User, "data") == 0) { // data
+        if (strcmp(User, "data") == 0) { // data
             t = time(NULL);
             printf("%s", ctime(&t));
 
@@ -41,7 +45,7 @@ int main() {
         } else if (strcmp(User, "exit") == 0) { // exit
             exit(0);
 
-        } else if (strcmp(User, "help") == 0) { // help
+        } else if ((strcmp(User, "help") == 0) || (strcmp(User, "?") == 0)) { // help
             printf("help | ? - displays all commands\nexit - terminates execution\ndata - displays the date\ntime - displays the time in seconds\nversion - shows the version of the terminal\n");
 
         } else if (strcmp(User, "version") == 0) { // version
