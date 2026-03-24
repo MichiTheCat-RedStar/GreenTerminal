@@ -11,8 +11,9 @@ int main() {
     
     time_t t = time(NULL); // Время сейчас
     char User[32]; // Какой всего длины может быть строка
-    printf("GreenTerminal   -   [run time] %s(c) all rights reserved under the MIT license (MichiTheCat-RedStar on GitGub)\n", ctime(&t));
+    char VERSION[6] = "v0.2a"; // Версия
 
+    printf("GreenTerminal   -   [run time] %s(c) all rights reserved under the MIT license (MichiTheCat-RedStar on GitGub)\n", ctime(&t));
     while (1) {
         printf("\nGreenTerminal> ");
         fgets(User, sizeof(User), stdin);
@@ -41,7 +42,10 @@ int main() {
             exit(0);
 
         } else if (strcmp(User, "help") == 0) { // help
-            printf("help | ? - displays all commands\nexit - terminates execution\ndata - displays the date\ntime - displays the time in seconds\n");
+            printf("help | ? - displays all commands\nexit - terminates execution\ndata - displays the date\ntime - displays the time in seconds\nversion - shows the version of the terminal\n");
+
+        } else if (strcmp(User, "version") == 0) { // version
+            printf("version = %s\n", VERSION);
 
         } else {
             printf("\"%s\" is no such command, read the documentation in README.md\n", User);
