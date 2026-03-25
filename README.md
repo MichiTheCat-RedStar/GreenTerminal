@@ -4,6 +4,8 @@
 
 [![Itch.io](https://img.shields.io/badge/Itch.io-michi--the--cat-FA5C5C?style=for-the-badge&logo=itch.io&logoColor=white)](https://michi-the-cat.itch.io)
 
+### [English]-> [There is an English version of the README](/README-EN.md)
+
 
 ## Цель
 
