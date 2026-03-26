@@ -5,7 +5,7 @@
 from time import time
 from datetime import datetime
 
-VERSION = 'v0.2b'
+VERSION = 'v0.3a'
 # isWindows = False
 
 print(f'GreenTerminal   -   [run time] {(datetime.now()).strftime("%a %b %d %H:%M:%S %Y")}\n(c) all rights reserved under the MIT license (MichiTheCat-RedStar on GitGub)')
@@ -30,5 +30,11 @@ while True:
     elif User == 'version': # version
         print('version =', VERSION)
 
-    else:
-        print(f'"{User}" is no such command, read the documentation in README.md')
+    else: # * *
+        User = User.split(' ')
+
+        if User[0] == 'read': # read
+            continue # TODO fix C file first
+        
+        else: # UNKOWN
+            print(f'"{' '.join(User)}" is no such command, read the documentation in README.md')
