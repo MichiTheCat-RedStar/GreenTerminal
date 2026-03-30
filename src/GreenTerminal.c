@@ -18,7 +18,7 @@ int main() {
     char *spacedUser;
 
     char User[64]; // Какой всего длины может быть строка
-    char VERSION[] = "v0.3a"; // Версия
+    char VERSION[] = "v0.3b"; // Версия
 
     printf("GreenTerminal   -   [run time] %s(c) all rights reserved under the MIT license (MichiTheCat-RedStar on GitGub)\n", ctime(&t));
     while (1) {
@@ -43,7 +43,13 @@ int main() {
             exit(0);
 
         } else if ((strcmp(User, "help") == 0) || (strcmp(User, "?") == 0)) { // help
-            printf("help | ? - displays all commands\nexit - terminates execution\ndata - displays the date\ntime - displays the time in seconds\nversion - shows the version of the terminal\n");
+            printf(
+                "help | ? - displays all commands\n"
+                "exit - terminates execution\n"
+                "data - displays the date\n"
+                "time - displays the time in seconds\n"
+                "version - shows the version of the terminal\n"
+            );
 
         } else if (strcmp(User, "version") == 0) { // version
             printf("version = %s\n", VERSION);
