@@ -5,12 +5,11 @@
 from time import time
 from datetime import datetime
 
-VERSION = 'v0.3b'
-# isWindows = False
+VERSION = 'v0.3c' # Версия программы
 
 print(f'GreenTerminal   -   [run time] {(datetime.now()).strftime("%a %b %d %H:%M:%S %Y")}\n(c) all rights reserved under the MIT license (MichiTheCat-RedStar on GitGub)')
 while True:
-    User = input('\nGreenTerminal> ') # Ввод пользователя
+    User = input('\nGreenTerminal> ') # Текст, который ввёл пользователь [Какой всего длины может быть строка]
 
     if not User: # None
         continue

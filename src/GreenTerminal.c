@@ -8,17 +8,20 @@
 #include <stdlib.h>
 #include <locale.h>
 
+#define DEBUG // Проверка на debug режим
+
 int main() {
     
+    // Задаю переменные, чтобы не плодить их в цикле
     time_t t = time(NULL); // Время сейчас
-    setlocale(LC_ALL, "");
-    size_t len = 0;
-    int c;
-    char *space;
-    char *spacedUser;
+    setlocale(LC_ALL, ""); // Локаль
+    size_t len = 0; // Размер строки
+    int chr; // Символ
+    char space[128] = ""; // Разделённый пробелом текст
+    int i, j; // Буду использовать в циклах for
 
-    char User[64]; // Какой всего длины может быть строка
-    char VERSION[] = "v0.3b"; // Версия
+    char User[128]; // Текст, который ввёл пользователь [Какой всего длины может быть строка]
+    char VERSION[] = "v0.3c"; // Версия программы
 
     printf("GreenTerminal   -   [run time] %s(c) all rights reserved under the MIT license (MichiTheCat-RedStar on GitGub)\n", ctime(&t));
     while (1) {
@@ -29,7 +32,7 @@ int main() {
         if (len > 0 && User[len-1] == '\n') {
             User[len-1] = '\0';
         } else {
-            while ((c = getchar()) != '\n' && c != EOF); }
+            while ((chr = getchar()) != '\n' && chr != EOF); }
 
         if (strcmp(User, "data") == 0) { // data
             t = time(NULL);
@@ -55,14 +58,28 @@ int main() {
             printf("version = %s\n", VERSION);
 
         } else { // * *
-            space = strchr(User, ' ');
-            spacedUser = strchr(space, *User); // TODO fix
-            printf("%s\n", spacedUser);
-            
-            if (0) {
+            // TODO: тут была цель в том, чтобы разделить User по пробелу (напрмиер при run command чтобы было User=["r", "u", "n"], а space=["c", "o", "m", "m", "a", "n", "d"])
+            j = 0;
+            memset(space, 0, 128);
+            for (i = 0; i < 128; i++) {
+                if (User[i] == ' ') {
+                    j = 0;
+                    continue;
+                } else if (User[i] == '\0') {
+                    break;
+                }
+                j++;
+                space[i] += User[i];
+            }
 
+
+            if (0) {
+                // TODO
             } else { // UNKOWN
                 printf("\"%s\" is no such command, read the documentation in README.md\n", User);
+                #ifdef DEBUG
+                    printf("command: \"%s\"; char after split: %i\n", space, j);
+                #endif
             }
         }
         
