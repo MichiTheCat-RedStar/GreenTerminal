@@ -5,7 +5,7 @@
 from time import time
 from datetime import datetime
 
-VERSION = 'v0.3c' # Версия программы
+VERSION = 'v0.3d' # Версия программы (соответственно C файлу, а не обновлению Python версии)
 
 print(f'GreenTerminal   -   [run time] {(datetime.now()).strftime("%a %b %d %H:%M:%S %Y")}\n(c) all rights reserved under the MIT license (MichiTheCat-RedStar on GitGub)')
 while True:
@@ -36,7 +36,7 @@ while True:
         print('version =', VERSION)
 
     else: # * *
-        User = User.split(' ')
+        User = User.split(' ') # UserCommand/UserFunction -> User[0]/User[1]
 
         if User[0] == 'read': # read
             continue # TODO fix C file first

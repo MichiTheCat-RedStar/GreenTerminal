@@ -17,11 +17,12 @@ int main() {
     setlocale(LC_ALL, ""); // Локаль
     size_t len = 0; // Размер строки
     int chr; // Символ
-    char space[128] = ""; // Разделённый пробелом текст
+    char UserCommand[128] = {'\0'}; // Разделённый пробелом текст -> Комманда пользователя
+    char UserFunction[128] = {'\0'}; // Разделённый пробелом текст -> Функция пользователя
     int i, j; // Буду использовать в циклах for
 
     char User[128]; // Текст, который ввёл пользователь [Какой всего длины может быть строка]
-    char VERSION[] = "v0.3c"; // Версия программы
+    char VERSION[] = "v0.3d"; // Версия программы
 
     printf("GreenTerminal   -   [run time] %s(c) all rights reserved under the MIT license (MichiTheCat-RedStar on GitGub)\n", ctime(&t));
     while (1) {
@@ -58,28 +59,35 @@ int main() {
             printf("version = %s\n", VERSION);
 
         } else { // * *
-            // TODO: тут была цель в том, чтобы разделить User по пробелу (напрмиер при run command чтобы было User=["r", "u", "n"], а space=["c", "o", "m", "m", "a", "n", "d"])
+            // TODO: тут была цель в том, чтобы разделить User по пробелу (напрмиер при run command чтобы было UserCommand=["r", "u", "n"], а UserFunction=["c", "o", "m", "m", "a", "n", "d"])
             j = 0;
-            memset(space, 0, 128);
-            for (i = 0; i < 128; i++) {
+            memset(UserCommand, '\0', sizeof(UserCommand));
+            memset(UserFunction, '\0', sizeof(UserFunction));
+            for (i = 0; i < sizeof(User); i++) {
                 if (User[i] == ' ') {
                     j = 0;
-                    continue;
+                    memset(UserFunction, '\0', sizeof(UserFunction));
                 } else if (User[i] == '\0') {
                     break;
+                } else {
+                    UserFunction[j] = User[i];
+                    UserCommand[i] = User[i];
+                    j++;
                 }
-                j++;
-                space[i] += User[i];
-            }
-
+            } /* for (i = 0; i < sizeof(User); i++) {
+                if (User[i] == '\0') {
+                    break;
+                }
+            } */
+            #ifdef DEBUG
+                printf("command: \"%s\"; char after split: %i -> %i; function: \"%s\"\n", UserCommand, i, j, UserFunction);
+            #endif
 
             if (0) {
-                // TODO
+                    // TODO
+
             } else { // UNKOWN
                 printf("\"%s\" is no such command, read the documentation in README.md\n", User);
-                #ifdef DEBUG
-                    printf("command: \"%s\"; char after split: %i\n", space, j);
-                #endif
             }
         }
         
